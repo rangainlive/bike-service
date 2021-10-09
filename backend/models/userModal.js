@@ -2,7 +2,7 @@
 const mongoose = require("mongoose");
 
 // create a userSchema template from mongoose Scheme
-const userScheme = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
   userName: {
     type: String,
     required: true,
@@ -26,4 +26,4 @@ const userScheme = new mongoose.Schema({
 });
 
 // export the userScheme module
-module.exports = mongoose.model("users", userScheme);
+module.exports = mongoose.model("users", userSchema);

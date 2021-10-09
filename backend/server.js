@@ -4,6 +4,7 @@ const express = require("express");
 // Initialize mongodb
 const mongoose = require("mongoose");
 
+
 // Initialize cors
 const cors = require("cors");
 
@@ -29,7 +30,7 @@ app.use(express.json());
 app.use(cors());
 
 //use app to call the userRouter paths
-app.use("/razor", userRouter);
+app.use("/app", userRouter);
 
 // listening backend server from port from environment PORT variable.
 app.listen(process.env.PORT, () => console.log("Server is up and Running"));
