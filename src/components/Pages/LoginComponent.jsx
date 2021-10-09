@@ -4,13 +4,15 @@ import "./Register.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 
+// Initial values for Formik fields
 const initialValues = {
   email: "",
   password: "",
 };
 
+// Validation Scheme for formik
 const validationSchema = Yup.object({
   email: Yup.string()
     .email("Enter your valid email")
@@ -21,6 +23,7 @@ const validationSchema = Yup.object({
 });
 
 function LoginComponent() {
+  // form submission method
   const onSubmit = (values) => {
     const requestData = {
       email: values.email,
