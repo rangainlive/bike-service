@@ -7,11 +7,10 @@ import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
+// Initial values for Formik fields
 const initialValues = {
-  name: "",
+  userName: "",
   email: "",
-  role: "user",
-  address: "",
   password: "",
   confirmPassword: "",
   mobile: "",
@@ -20,8 +19,9 @@ const initialValues = {
 const phoneRegExp =
   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
+  // Validation Scheme for formik
 const validationSchema = Yup.object({
-  name: Yup.string().required("Enter the Name"),
+  userName: Yup.string().required("Enter the Name"),
   email: Yup.string()
     .email("Enter your valid email")
     .required("Email field cannot be empty"),
@@ -31,7 +31,6 @@ const validationSchema = Yup.object({
   confirmPassword: Yup.string()
     .oneOf([Yup.ref("password"), null], "Passwords must match")
     .required("Confirm your password"),
-  address: Yup.string().required("Enter your valid address"),
   mobile: Yup.string()
     .matches(phoneRegExp, "Phone number is not valid")
     .min(10, "Enter valid mobile number")
@@ -43,14 +42,15 @@ const validationSchema = Yup.object({
 });
 
 function RegisterComponent() {
+
   const history = useHistory();
+
+  // form submission method
   const onSubmit = (values) => {
     const newUser = {
-      name: values.name,
+      userName: values.userName,
       email: values.email,
       password: values.password,
-      role: values.role,
-      address: values.address,
       mobile: values.mobile,
     };
     axios
@@ -94,17 +94,17 @@ function RegisterComponent() {
                     >
                       <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
                     </svg>
-                    <label htmlFor="name">Enter Fullname</label>
+                    <label htmlFor="userName">Username</label>
                   </div>
                   <Field
                     className="form-control"
-                    name="name"
-                    aria-label="name"
-                    id="name"
+                    name="userName"
+                    aria-label="userName"
+                    id="userName"
                   />
                 </div>
                 <div>
-                  <ErrorMessage name="name">
+                  <ErrorMessage name="userName">
                     {(errorMsg) => <div className="demoError">{errorMsg}</div>}
                   </ErrorMessage>{" "}
                 </div>
@@ -137,38 +137,7 @@ function RegisterComponent() {
                   </ErrorMessage>{" "}
                 </div>
               </div>
-              <div className="formField">
-                <div className="form-group">
-                  <div className="inputLabel">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="25"
-                      height="25"
-                      fill="currentColor"
-                      className="bi bi-people-fill"
-                      viewBox="0 0 16 16"
-                    >
-                      <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                      <path
-                        fillRule="evenodd"
-                        d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"
-                      />
-                      <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
-                    </svg>
-                    <label htmlFor="country_id">Select Role: </label>
-                  </div>
-                  <Field
-                    as="select"
-                    className="form-control"
-                    name="role"
-                    id="role"
-                    aria-label="role"
-                  >
-                    <option value="user">User</option>
-                    <option value="admin">Admin</option>
-                  </Field>
-                </div>
-              </div>
+
               <div className="formField">
                 <div className="form-group">
                   <div className="inputLabel">
@@ -227,34 +196,7 @@ function RegisterComponent() {
                   </ErrorMessage>{" "}
                 </div>
               </div>
-              <div className="formField">
-                <div className="form-group">
-                  <div className="inputLabel">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      fill="currentColor"
-                      className="bi bi-geo-alt-fill"
-                      viewBox="0 0 16 16"
-                    >
-                      <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
-                    </svg>
-                    <label htmlFor="address">Address</label>
-                  </div>
-                  <Field
-                    className="form-control"
-                    name="address"
-                    aria-label="address"
-                    id="address"
-                  />
-                </div>
-                <div>
-                  <ErrorMessage name="address">
-                    {(errorMsg) => <div className="demoError">{errorMsg}</div>}
-                  </ErrorMessage>{" "}
-                </div>
-              </div>
+
               <div className="formField">
                 <div className="form-group">
                   <div className="inputLabel">

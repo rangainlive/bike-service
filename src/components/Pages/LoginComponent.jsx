@@ -2,23 +2,17 @@ import React from "react";
 import { Grid, Paper, Avatar, Typography } from "@material-ui/core";
 import "./Register.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
-import { getDatabase, ref, set, onValue } from "firebase/database";
 import * as Yup from "yup";
 import axios from "axios";
-import { useHistory } from "react-router";
-// import { MdEmail, MdVpnKey } from "react-icons/md";
 import { Link } from "react-router-dom";
 
+// Initial values for Formik fields
 const initialValues = {
   email: "",
   password: "",
 };
 
+// Validation Scheme for formik
 const validationSchema = Yup.object({
   email: Yup.string()
     .email("Enter your valid email")
@@ -29,9 +23,7 @@ const validationSchema = Yup.object({
 });
 
 function LoginComponent() {
-  const history = useHistory();
-  const auth = getAuth();
-  const db = getDatabase();
+  // form submission method
   const onSubmit = (values) => {
     const requestData = {
       email: values.email,
@@ -42,71 +34,8 @@ function LoginComponent() {
       .post("http://localhost:8080/login", requestData)
       .then((response) => {
         console.log(response);
-        const userData = response.data[0];
-        const userCredential = response.data[1];
-        console.log("User Info:", response);
-        sessionStorage.setItem("authenticatedUser", userCredential.idToken);
-        if (userData.role === "admin") {
-          history.push({
-            pathname: "/admin",
-            state: {
-              uid: userData.uid,
-            },
-          });
-        } else {
-          history.push({
-            pathname: "/user",
-            state: {
-              uid: userData.uid,
-            },
-          });
-        }
       })
       .catch((error) => {
-        // signInWithEmailAndPassword(
-        //   auth,
-        //   requestData.email,
-        //   requestData.password
-        // )
-        //   .then((userCredential) => {
-        //     // Signed in
-
-        //     const user = userCredential.user;
-        //     const role = ref(db, "users/" + user.uid);
-
-        //     onValue(role, (snapshot) => {
-        //       const response = snapshot.val();
-        //       const userData = response.data;
-        //       const UserCredential = userCredential._tokenResponse;
-        //       console.log("User Info:", response);
-        //       sessionStorage.setItem(
-        //         "authenticatedUser",
-        //         UserCredential.idToken
-        //       );
-        //       if (userData.role === "admin") {
-        //         history.push({
-        //           pathname: "/admin",
-        //           state: {
-        //             uid: userData.uid,
-        //           },
-        //         });
-        //       } else {
-        //         history.push({
-        //           pathname: "/user",
-        //           state: {
-        //             uid: userData.uid,
-        //           },
-        //         });
-        //       }
-        //     });
-        //     // ...
-        //   })
-        //   .catch((error) => {
-        //     const errorCode = error.code;
-        //     // const errorMessage = error.message;
-        //     console.log(errorCode);
-        //   });
-
         console.log(error);
       });
   };
@@ -117,7 +46,7 @@ function LoginComponent() {
           <Avatar style={{ color: "green" }}></Avatar>
           <h3>Login</h3>
           <Typography variant="caption">
-            Please fill this form to create an account !
+            Please fill this form to login your account !
           </Typography>
         </Grid>
         <Formik
