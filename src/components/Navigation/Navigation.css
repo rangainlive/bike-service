@@ -1,0 +1,32 @@
+/* Header Component page styles */
+.titleHead {
+  font-size: 1rem;
+  padding: 0.5rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#navBrand {
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+#navBrand img {
+  margin:0 0.5rem;
+}
+
+/* Footer Component page Styles */
+.main-footer {
+    position: relative;
+    bottom: 0px;
+    width: 100%;
+    text-align: center;
+    background-color: #7952B3;
+    color: white;
+    font-size: 0.9rem;
+  }
+  
+  .footer-line {
+      background-color: #0c08f0;
+      height: 0.2rem;
+  }
+  
