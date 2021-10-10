@@ -1,0 +1,125 @@
+/* User Navbar Component page styles */
+.userNavContainer {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 40% 30% 20%;
+}
+.logout {
+    text-align: right;
+}
+.userNavContainer h3 {
+    font-family: Arial, Helvetica, sans-serif;
+    color: blue;
+    font-weight: 800;
+}
+.searchInput {
+    display: flex;
+}
+#searchInput input{
+    background-color: #f8f8f8;
+    border: none;
+}
+#searchInput button{
+    background-color: #b8a9a9;
+    border: none;
+    outline-style: none;
+}
+#searchInput button svg {
+    font-size: 1rem;
+}
+
+/* UserDetails Component page design */
+.personal {
+    margin:0 1rem;
+    display: flex;
+    justify-content: space-evenly;
+    /* align-items: center; */
+}
+@media screen and (max-width: 968px) {
+    .personal {
+        margin:0 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        /* align-items: center; */
+    }
+    .personal div {
+        display: flex;
+        justify-content: center;
+    }
+}
+@media screen and (max-width: 560px) {
+    .personal {
+        margin:0 1rem;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        /* align-items: center; */
+    }
+    .personal div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 80%;
+        text-align: center;
+    }
+}
+.personal .detailBtn{
+    text-align: end;
+    margin-right: 1rem;
+}
+.personal img {
+    margin-left: 2rem;
+    background-color: transparent;
+}
+
+/* Vehicle Component Page Design */
+.vehicleContainer{
+    display: flex;
+    flex-direction: column;
+    background-color: #f8f8f8;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}
+.vehicleHead {
+    display: flex;
+}
+.vehicleHead div:last-child {
+    text-align: end;
+}
+.vehicleBody {
+    display: flex;
+}
+
+/* Service Component page design */
+.serviceContainer {
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.serviceHead {
+    display: flex;
+    justify-content: space-evenly;
+}
+#cardHead {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#bookedDate {
+    font-size: 1rem;
+    color: red;
+    font-weight: 700;
+    font-family: Arial, Helvetica, sans-serif;
+}
+#bookedDate span {
+    color: blue;
+    font-weight: 300;
+}
+#serviceLink{
+    text-decoration: none;
+    color: white;
+}
+.serviceHead div:last-child {
+    text-align: end;
+}

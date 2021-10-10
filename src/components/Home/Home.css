@@ -1,0 +1,14 @@
+/* User Component page styles */
+
+.userContainer {
+    display: flex;
+    flex-direction: column;
+    margin: 2rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    background-color: #c5c5c5;
+}
+.userContainer div {
+    width: 100%;
+    margin-bottom: 1rem;
+}

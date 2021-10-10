@@ -5,6 +5,21 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+#collapseNavbar ul{
+  display: flex;
+  justify-content: right;
+
+}
+@media only screen and (max-width:990px) {
+  #collapseNavbar ul{
+    display: flex;
+    justify-content: right;
+  
+  }
+  #collapseNavbar ul li {
+    text-align: center;
+  }
+}
 #navBrand {
   padding: 0 1rem;
   display: flex;

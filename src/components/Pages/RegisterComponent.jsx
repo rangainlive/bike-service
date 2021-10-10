@@ -54,8 +54,9 @@ function RegisterComponent() {
       mobile: values.mobile,
     };
     axios
-      .post("http://localhost:8080/register", newUser)
+      .post("http://localhost:5050/app/register", newUser)
       .then((response) => {
+        console.log(response);
         console.log(response);
         history.push({
           pathname: "/",
@@ -244,7 +245,7 @@ function RegisterComponent() {
                 </button>
               </div>
               <div className="haveAcc">
-                Already hava an account ? <Link to="/">click here</Link>
+                Already hava an account ? <Link to="/signin">click here</Link>
               </div>
             </Form>
           )}

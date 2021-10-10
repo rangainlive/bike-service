@@ -37,8 +37,8 @@ function HeaderComponent() {
       <div className="collapse navbar-collapse" id="collapseNavbar">
         <ul className="navbar-nav">
           <li className="nav-item active">
-            <Link className="nav-link" to="/about">
-              About
+            <Link className="nav-link" to="/signup">
+              Register
             </Link>
           </li>
         </ul>

@@ -19,9 +19,20 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  date: {
-    type: Date,
-    default: Date.now,
+  location: {
+    type: String,
+  },
+  gender: {
+    type: String,
+  },
+  plan: {
+    type: String,
+  },
+  vehicleModal: {
+    type: String,
+  },
+  vehicleNo: {
+    type: String,
   },
 });
 

@@ -3,6 +3,7 @@ import { Grid, Paper, Avatar, Typography } from "@material-ui/core";
 import "./Register.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { useHistory } from "react-router";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
@@ -23,6 +24,7 @@ const validationSchema = Yup.object({
 });
 
 function LoginComponent() {
+  const history = useHistory();
   // form submission method
   const onSubmit = (values) => {
     const requestData = {
@@ -31,9 +33,24 @@ function LoginComponent() {
     };
 
     axios
-      .post("http://localhost:8080/login", requestData)
+      .post("http://localhost:5050/app/login", requestData)
       .then((response) => {
-        console.log(response);
+        if (response.data.emailKey) {
+          const uEmail = response.data.emailKey;
+          sessionStorage.setItem("user", response.data.token);
+          sessionStorage.setItem("refresh", response.data.refreshToken);
+          if (uEmail === "john@gmail.com") {
+            history.push({
+              pathname: "/admin",
+            });
+          } else {
+            history.push({
+              pathname: "/user",
+            });
+          }
+        } else {
+          alert(response.data.message);
+        }
       })
       .catch((error) => {
         console.log(error);

@@ -1,0 +1,61 @@
+img {
+    height: 7rem;
+    border-radius: 6rem;
+    margin-top: 20%;
+    
+}
+
+/* New Booking Page Design */
+.statusBtn {
+    display: flex;
+    justify-content: center;
+}
+.statusBtn div {
+    margin: 0 1rem;
+}
+.statusBtn select {
+    font-size: 0.9rem;
+}
+.serviceContainer {
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.serviceHead {
+    display: flex;
+    justify-content: space-evenly;
+}
+#cardHead {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#bookedDate {
+    font-size: 1rem;
+    color: red;
+    font-weight: 700;
+    font-family: Arial, Helvetica, sans-serif;
+}
+#bookedDate span {
+    color: blue;
+    font-weight: 300;
+}
+#serviceLink{
+    text-decoration: none;
+    color: white;
+}
+.serviceHead div:last-child {
+    text-align: end;
+}
+
+/* UserList Page Design */
+
+#cardHead {
+    display: flex;
+    margin: 1rem;
+}
+#cardHead div {
+    width: 100%;
+    text-align: center;
+}
+
