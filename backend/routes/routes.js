@@ -173,10 +173,36 @@ router.post("/bookservice", async (req, res, next) => {
     serviceDate: req.body.serviceDate,
   });
 
+  // Step 1
+  let transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: process.env.EMAIL,
+      pass: process.env.PASSWORD,
+    },
+  });
+
   bookedService
     .save()
     .then((data) => {
       res.send("Service added Successfully!");
+
+      // Step 2
+      let mailOptions = {
+        from: "ranga15cse@gmail.com",
+        to: "rangainlive@gmail.com",
+        subject: "Booking Request",
+        text: "Bike Service Request added",
+      };
+
+      // Step 3
+      transporter.sendMail(mailOptions, function (err, data) {
+        if (err) {
+          console.log("Error Occur", err);
+        } else {
+          console.log("Email Sent !!!");
+        }
+      });
     })
     .catch((error) => {
       console.log(error);
@@ -249,11 +275,35 @@ router.post("/updateservice", async (req, res, next) => {
     isCompleted: req.body.isCompleted,
     status: req.body.status,
   });
-  console.log(updatedService);
+
+  // Step 1
+  let transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: process.env.EMAIL,
+      pass: process.env.PASSWORD,
+    },
+  });
   serviceSchema
     .updateOne({ _id: req.body._id }, updatedService)
     .then((user) => {
       res.send("Service updated successfully");
+      // Step 2
+      let mailOptions = {
+        from: "ranga15cse@gmail.com",
+        to: "rangainlive@gmail.com",
+        subject: "Service Status Updated",
+        text: "Your bike service request updated. Kindly check with your Login",
+      };
+
+      // Step 3
+      transporter.sendMail(mailOptions, function (err, data) {
+        if (err) {
+          console.log("Error Occur", err);
+        } else {
+          console.log("Email Sent !!!");
+        }
+      });
     })
     .catch((error) => {
       console.log(error);
