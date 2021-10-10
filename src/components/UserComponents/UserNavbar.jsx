@@ -9,7 +9,7 @@ function UserNavbar(props) {
     sessionStorage.removeItem("user");
     sessionStorage.removeItem("refresh");
     history.push({
-      pathname: "/signin",
+      pathname: "/",
     });
   };
   return (

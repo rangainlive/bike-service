@@ -30,7 +30,7 @@ function NewBookings() {
         setServices(tempServices);
         if (response.data.message === "Authentication Failed!") {
           history.push({
-            pathname: "/signin",
+            pathname: "/",
           });
         }
       })
@@ -56,6 +56,7 @@ function NewBookings() {
           }
         }
       }
+      return null;
     });
     setServices([...services]);
   };
@@ -76,11 +77,15 @@ function NewBookings() {
             console.log(error);
           });
       }
+      return null;
     });
   };
 
   return (
     <div>
+      <div>
+        <h3>Booked Services</h3>
+      </div>
       {services.map((service) => {
         return (
           <div className="card text-center m-2" key={service._id}>

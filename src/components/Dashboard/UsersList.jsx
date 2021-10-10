@@ -39,9 +39,12 @@ function UsersList() {
   }, [history]);
   return (
     <div className="userListContainer">
+      <div>
+        <h3>Customers List</h3>
+      </div>
       {user.map((us) => {
         return (
-          <div className="card" key={us._id} id="cardHead">
+          <div className="card p-2" key={us._id} id="cardHead">
             <div>
               <div>{us.userName}</div>
               <div>{us.email}</div>
@@ -54,6 +57,7 @@ function UsersList() {
                 Remove
               </button>
             </div>
+            <div>Joined On: {moment(us.date).format("MMMM DD, YYYY")}</div>
           </div>
         );
       })}

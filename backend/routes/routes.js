@@ -10,6 +10,7 @@ const bcrypt = require("bcryptjs");
 // Import userScheme modal from models folder
 const userScheme = require("../models/userModal");
 const serviceSchema = require("../models/serviceModal");
+const serviceListSchema = require("../models/listServiceModal");
 
 // authenticate jwt Token
 const authenticate = require("../Authenticate/authenticate");
@@ -132,6 +133,34 @@ router.post("/refresh-token", (req, res, next) => {
   });
 });
 
+router.post("/addservice", async (req, res, next) => {
+  const registeredService = new serviceListSchema({
+    serviceName: req.body.serviceName,
+  });
+  registeredService
+    .save()
+    .then((data) => {
+      res.status(200).send("New Service added Successfully!");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+router.get("/servicelist", authenticate, (req, res, next) => {
+  const token = req.headers.authorization.split(" ")[1];
+  const decode = jwt.verify(token, "userToken");
+
+  // get user details from database
+  serviceListSchema.find().then((service) => {
+    if (service) {
+      res.status(200).send(service);
+    } else {
+      res.status(404).send("Service details not found");
+    }
+  });
+});
+
 router.post("/bookservice", async (req, res, next) => {
   const bookedService = new serviceSchema({
     email: req.body.email,
@@ -167,7 +196,7 @@ router.get("/adminbookedservice", authenticate, (req, res, next) => {
   // get user details from database
   serviceSchema.find().then((service) => {
     if (service) {
-      res.status(200).send(service);
+      res.status(200).json(service);
     } else {
       res.status(404).send("Service details not found");
     }

@@ -44,12 +44,12 @@ function ServiceDetails() {
               <h4>Service Details</h4>
             </div>
             <div>
-              <button className="btn btn-danger">
-                <Link to="/book-service" id="serviceLink">
+              <Link to="/book-service" id="serviceLink">
+                <button className="btn btn-danger">
                   <i className="bi bi-bookmark-check"></i>
                   {"  "} Book Service
-                </Link>
-              </button>
+                </button>
+              </Link>
             </div>
           </div>
           {services.length ? (
@@ -89,7 +89,7 @@ function ServiceDetails() {
                             soon{" "}
                           </div>
                         )}
-                        {service.status === "Completed" && (
+                        {service.status === "Ready for Delivery" && (
                           <div>
                             {" "}
                             Thank you for your support. Any queries contact our
@@ -101,7 +101,7 @@ function ServiceDetails() {
                         className={
                           service.status === "Pending"
                             ? "btn btn-primary"
-                            : service.status === "Completed"
+                            : service.status === "Ready for Delivery"
                             ? "btn btn-success"
                             : "btn btn-warning"
                         }

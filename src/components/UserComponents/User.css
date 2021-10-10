@@ -4,6 +4,13 @@
     display: grid;
     grid-template-columns: 40% 30% 20%;
 }
+@media screen and (max-width: 648px) {
+    .userNavContainer {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+}
 .logout {
     text-align: right;
 }
@@ -105,6 +112,17 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 90%;
+}
+@media screen and (max-width: 648px) {
+    #cardHead {
+        display: flex;
+        flex-direction: column;
+    }
+    .vehicleHead {
+        display: flex;
+        flex-direction: column;
+    }
 }
 #bookedDate {
     font-size: 1rem;

@@ -1,9 +1,11 @@
 import React from "react";
 
+import "./Dashboard.css";
+
 function Completed() {
   return (
     <div>
-      <div>Completed Bookings</div>
+      <div>Razor Bike Service Company</div>
     </div>
   );
 }

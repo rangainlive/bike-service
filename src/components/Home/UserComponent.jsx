@@ -26,7 +26,7 @@ function UserComponent() {
         setUser(response.data);
         if (response.data.message === "Authentication Failed!") {
           history.push({
-            pathname: "/signin",
+            pathname: "/",
           });
         }
       })

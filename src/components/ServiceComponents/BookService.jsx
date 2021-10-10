@@ -28,12 +28,7 @@ const validationSchema = Yup.object({
 function BookService() {
   const history = useHistory();
   const [user, setUser] = useState([]);
-  const services = [
-    "General service check-up",
-    "Oil change",
-    "Water wash",
-    "Full Service",
-  ];
+  const [services, setServices] = useState([]);
   // form submission method
   const onSubmit = (values) => {
     const newService = {
@@ -70,6 +65,18 @@ function BookService() {
             pathname: "/signin",
           });
         }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    axios
+      .get("http://localhost:5050/app/servicelist", {
+        headers: { Authorization: `Bearer ${keyToken}` },
+      })
+      .then((response) => {
+        console.log(response.data);
+        setServices(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -148,7 +155,7 @@ function BookService() {
                     {services.map((code, index) => {
                       return (
                         <option key={index} value={code}>
-                          {code}
+                          {code.serviceName}
                         </option>
                       );
                     })}

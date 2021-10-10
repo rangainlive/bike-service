@@ -42,7 +42,7 @@ function AdminComponent() {
     sessionStorage.removeItem("user");
     sessionStorage.removeItem("refresh");
     history.push({
-      pathname: "/signin",
+      pathname: "/",
     });
   };
   return (
@@ -77,20 +77,7 @@ function AdminComponent() {
                     d="M6.664 15.889A8 8 0 1 1 9.336.11a8 8 0 0 1-2.672 15.78zm-4.665-4.283A11.945 11.945 0 0 1 8 10c2.186 0 4.236.585 6.001 1.606a7 7 0 1 0-12.002 0z"
                   />
                 </svg>
-                <button onClick={() => setShow(1)}>New Bookings</button>
-              </Link>
-              <Link>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  className="bi bi-files"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M13 0H6a2 2 0 0 0-2 2 2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2 2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm0 13V4a2 2 0 0 0-2-2H5a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1zM3 4a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4z" />
-                </svg>
-                <button onClick={() => setShow(2)}>Completed</button>
+                <button onClick={() => setShow(1)}>Booked Services</button>
               </Link>
               <Link>
                 <svg
@@ -119,9 +106,24 @@ function AdminComponent() {
                 </svg>
                 <button onClick={() => setShow(4)}>Services</button>
               </Link>
+              <Link>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  className="bi bi-files"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M13 0H6a2 2 0 0 0-2 2 2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2 2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm0 13V4a2 2 0 0 0-2-2H5a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1zM3 4a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4z" />
+                </svg>
+                <button onClick={() => setShow(2)}>Company Details</button>
+              </Link>
             </Links>
             <ContactContainer>
-              <button onClick={logoutHandler}>Logout</button>
+              <button className="btn btn-danger" onClick={logoutHandler}>
+                Logout
+              </button>
             </ContactContainer>
           </LinksContainer>
         </SideBarNav>
@@ -158,7 +160,7 @@ const MainContentDiv = styled.div`
   width: 100%;
   min-height: 100vh;
   margin: 1rem 0.5rem;
-  background-color: #50ab53;
+  background-color: #f8f8f8;
   border-radius: 1.5rem;
 `;
 const Container = styled.div`

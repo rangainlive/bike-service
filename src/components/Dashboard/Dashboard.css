@@ -29,6 +29,7 @@ img {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: blanchedalmond;
 }
 #bookedDate {
     font-size: 1rem;
@@ -59,3 +60,12 @@ img {
     text-align: center;
 }
 
+/* List Service */
+.listHead {
+    display: flex;
+    justify-content: space-between;
+}
+
+.searchInput {
+    display: flex;
+}
