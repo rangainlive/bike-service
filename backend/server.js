@@ -1,7 +1,6 @@
 // Initialize the Express
 const express = require("express");
 
-
 // Initialize cors
 const cors = require("cors");
 
@@ -26,6 +25,11 @@ const app = express();
 );
 
 // call body parser using express
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
 app.use(express.json());
 
 // use cors to accept request from Cross Orgin

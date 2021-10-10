@@ -17,11 +17,10 @@ function UserDetails() {
         headers: { Authorization: `Bearer ${keyToken}` },
       })
       .then((response) => {
-        // console.log(response.data);
         setUser(response.data);
         if (response.data.message === "Authentication Failed!") {
           history.push({
-            pathname: "/signin",
+            pathname: "/",
           });
         }
       })
@@ -81,13 +80,13 @@ function UserDetails() {
         </div>
       </div>
       <div className="detailBtn">
-        <button className="btn btn-secondary">
-          <Link to="/update-user-details" id="serviceLink">
+        <Link to="/update-user-details" id="serviceLink">
+          <button className="btn btn-secondary">
             {" "}
             <i className="bi bi-pencil-square"></i>
             {"  "} Edit Details
-          </Link>
-        </button>
+          </button>
+        </Link>
       </div>
     </div>
   );

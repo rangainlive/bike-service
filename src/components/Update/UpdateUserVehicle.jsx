@@ -30,7 +30,6 @@ function UpdateUserVehicle() {
       axios
         .post("http://localhost:5050/app/updatevehicle", updateUser)
         .then((response) => {
-          console.log(response);
           history.push({
             pathname: "/user",
           });
@@ -43,12 +42,12 @@ function UpdateUserVehicle() {
 
   const filedHandler = (event) => {
     const { name, value } = event.target;
-    console.log("Name:", name, "value:", value);
     setInitialValues({
       ...initialValues,
       [name]: value,
     });
   };
+
   useEffect(() => {
     const keyToken = sessionStorage.getItem("user");
     axios
@@ -56,7 +55,6 @@ function UpdateUserVehicle() {
         headers: { Authorization: `Bearer ${keyToken}` },
       })
       .then((response) => {
-        console.log(response.data);
         setInitialValues({
           ...initialValues,
           _id: response.data._id,

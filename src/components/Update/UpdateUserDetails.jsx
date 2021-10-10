@@ -33,11 +33,9 @@ function UpdateUserDetails() {
         gender: initialValues.gender,
         type: initialValues.type,
       };
-      console.log(updateUser);
       axios
         .post("http://localhost:5050/app/updateuser", updateUser)
         .then((response) => {
-          console.log(response);
           history.push({
             pathname: "/user",
           });
@@ -50,7 +48,6 @@ function UpdateUserDetails() {
 
   const filedHandler = (event) => {
     const { name, value } = event.target;
-    console.log("Name:", name, "value:", value);
     setInitialValues({
       ...initialValues,
       [name]: value,
@@ -81,7 +78,7 @@ function UpdateUserDetails() {
       .catch((error) => {
         console.log(error);
       });
-  }, [history]);
+  }, []);
 
   return (
     <Grid>

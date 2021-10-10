@@ -4,6 +4,7 @@ import { useHistory } from "react-router";
 import "./Dashboard.css";
 
 function ListofServices() {
+  // Initialize Variables
   const history = useHistory();
   const [list, setList] = useState([]);
   const [serviceN, setServiceN] = useState("");
@@ -15,7 +16,6 @@ function ListofServices() {
         headers: { Authorization: `Bearer ${keyToken}` },
       })
       .then((response) => {
-        console.log(response.data);
         setList(response.data);
       })
       .catch((error) => {
@@ -27,7 +27,6 @@ function ListofServices() {
     axios
       .post("http://localhost:5050/app/addservice", { serviceName: serviceN })
       .then((response) => {
-        // console.log(response);
         history.push({
           pathname: "/admin",
         });

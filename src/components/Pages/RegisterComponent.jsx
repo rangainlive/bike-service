@@ -56,7 +56,6 @@ function RegisterComponent() {
     axios
       .post("http://localhost:5050/app/register", newUser)
       .then((response) => {
-        // console.log(response);
         history.push({
           pathname: "/",
         });

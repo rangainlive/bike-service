@@ -22,7 +22,6 @@ function UserComponent() {
         headers: { Authorization: `Bearer ${keyToken}` },
       })
       .then((response) => {
-        // console.log(response.data);
         setUser(response.data);
         if (response.data.message === "Authentication Failed!") {
           history.push({
@@ -34,6 +33,8 @@ function UserComponent() {
         console.log(error);
       });
   }, [history]);
+
+  
   return (
     <Suspense fallback={renderLoader()}>
       {user.email && (

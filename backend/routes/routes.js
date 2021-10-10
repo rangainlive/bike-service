@@ -1,6 +1,9 @@
 // Initialize the express.js
 const express = require("express");
 
+// Initialize the nodemailer
+const nodemailer = require("nodemailer");
+
 // JSON web token initilization
 const jwt = require("jsonwebtoken");
 
@@ -119,7 +122,6 @@ router.post("/refresh-token", (req, res, next) => {
         err,
       });
     } else {
-      console.log(decode);
       let token = jwt.sign({ email: decode.email }, "userToken", {
         expiresIn: "20m",
       });
@@ -133,6 +135,7 @@ router.post("/refresh-token", (req, res, next) => {
   });
 });
 
+// Post api call to add the new service
 router.post("/addservice", async (req, res, next) => {
   const registeredService = new serviceListSchema({
     serviceName: req.body.serviceName,
@@ -147,6 +150,7 @@ router.post("/addservice", async (req, res, next) => {
     });
 });
 
+// Get api call to get the  service list
 router.get("/servicelist", authenticate, (req, res, next) => {
   const token = req.headers.authorization.split(" ")[1];
   const decode = jwt.verify(token, "userToken");
@@ -161,6 +165,7 @@ router.get("/servicelist", authenticate, (req, res, next) => {
   });
 });
 
+// Post api call to fix and appointment for Bike Service
 router.post("/bookservice", async (req, res, next) => {
   const bookedService = new serviceSchema({
     email: req.body.email,
@@ -178,6 +183,7 @@ router.post("/bookservice", async (req, res, next) => {
     });
 });
 
+// Get api call to get the booked appoinments
 router.get("/bookedservice", authenticate, (req, res, next) => {
   const token = req.headers.authorization.split(" ")[1];
   const decode = jwt.verify(token, "userToken");
@@ -192,6 +198,7 @@ router.get("/bookedservice", authenticate, (req, res, next) => {
   });
 });
 
+// Get api call to get and list the booked appoinments
 router.get("/adminbookedservice", authenticate, (req, res, next) => {
   // get user details from database
   serviceSchema.find().then((service) => {
@@ -202,6 +209,8 @@ router.get("/adminbookedservice", authenticate, (req, res, next) => {
     }
   });
 });
+
+// Get api call to get the registered users
 router.get("/userslist", authenticate, (req, res, next) => {
   // get user details from database
   userScheme.find().then((user) => {
@@ -213,6 +222,7 @@ router.get("/userslist", authenticate, (req, res, next) => {
   });
 });
 
+// POST api call to update the user informations
 router.post("/updateuser", async (req, res, next) => {
   const updatedUser = new userScheme({
     ...req.body,
@@ -231,6 +241,7 @@ router.post("/updateuser", async (req, res, next) => {
     });
 });
 
+// POST api call to update the booked service
 router.post("/updateservice", async (req, res, next) => {
   const updatedService = new serviceSchema({
     ...req.body,
@@ -249,6 +260,7 @@ router.post("/updateservice", async (req, res, next) => {
     });
 });
 
+// POST api call to update the vehicle details
 router.post("/updatevehicle", async (req, res, next) => {
   const updatedUser = new userScheme({
     ...req.body,
@@ -265,6 +277,8 @@ router.post("/updatevehicle", async (req, res, next) => {
       console.log(error);
     });
 });
+
+// POST api call to remove user
 router.post("/removeuser", async (req, res, next) => {
   console.log(req.body);
   userScheme
@@ -276,10 +290,7 @@ router.post("/removeuser", async (req, res, next) => {
       console.log(error);
     });
 });
-// Homepage path get request
-router.get("/", authenticate, (req, res, next) => {
-  res.send("Home page");
-});
+
 
 // router exported
 module.exports = router;

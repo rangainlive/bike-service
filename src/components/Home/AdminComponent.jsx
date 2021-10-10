@@ -26,7 +26,6 @@ function AdminComponent() {
         headers: { Authorization: `Bearer ${keyToken}` },
       })
       .then((response) => {
-        // console.log(response.data);
         setAdmin(response.data);
         if (response.data.message === "Authentication Failed!") {
           history.push({
@@ -38,6 +37,7 @@ function AdminComponent() {
         console.log(error);
       });
   }, []);
+
   const logoutHandler = () => {
     sessionStorage.removeItem("user");
     sessionStorage.removeItem("refresh");
@@ -45,6 +45,8 @@ function AdminComponent() {
       pathname: "/",
     });
   };
+
+  
   return (
     <Suspense fallback={renderLoader()}>
       <Container>

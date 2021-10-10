@@ -16,7 +16,6 @@ function ServiceDetails() {
         headers: { Authorization: `Bearer ${keyToken}` },
       })
       .then((response) => {
-        console.log(response.data);
         const tempServices = response.data;
         tempServices.sort(function compare(a, b) {
           var dateA = new Date(a.serviceDate);

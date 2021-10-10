@@ -3,7 +3,6 @@ import { Grid, Paper, Typography } from "@material-ui/core";
 import "../Pages/Register.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-// import  from "uuidv4";
 import { useHistory } from "react-router";
 import axios from "axios";
 import Logo from "../../resources/bike.png";
@@ -29,6 +28,7 @@ function BookService() {
   const history = useHistory();
   const [user, setUser] = useState([]);
   const [services, setServices] = useState([]);
+
   // form submission method
   const onSubmit = (values) => {
     const newService = {
@@ -58,7 +58,6 @@ function BookService() {
         headers: { Authorization: `Bearer ${keyToken}` },
       })
       .then((response) => {
-        // console.log(response.data);
         setUser(response.data);
         if (response.data.message === "Authentication Failed!") {
           history.push({
@@ -75,7 +74,6 @@ function BookService() {
         headers: { Authorization: `Bearer ${keyToken}` },
       })
       .then((response) => {
-        console.log(response.data);
         setServices(response.data);
       })
       .catch((error) => {

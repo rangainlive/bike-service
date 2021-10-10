@@ -20,7 +20,6 @@ function NewBookings() {
         headers: { Authorization: `Bearer ${keyToken}` },
       })
       .then((response) => {
-        console.log(response.data);
         const tempServices = response.data;
         tempServices.sort(function compare(a, b) {
           var dateA = new Date(a.serviceDate);
@@ -64,11 +63,9 @@ function NewBookings() {
   const updateHandler = (id) => {
     services.map((service) => {
       if (service._id === id) {
-        console.log("Values:", service);
         axios
           .post("http://localhost:5050/app/updateservice", service)
           .then((response) => {
-            console.log(response);
             history.push({
               pathname: "/admin",
             });

@@ -6,6 +6,7 @@ import * as Yup from "yup";
 import { useHistory } from "react-router";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Logo from "../../resources/bike.png";
 
 // Initial values for Formik fields
 const initialValues = {
@@ -25,6 +26,7 @@ const validationSchema = Yup.object({
 
 function LoginComponent() {
   const history = useHistory();
+
   // form submission method
   const onSubmit = (values) => {
     const requestData = {
@@ -57,7 +59,11 @@ function LoginComponent() {
       });
   };
   return (
-    <Grid>
+    <Grid className="homeContainer">
+      <Paper elevation={20} className="paperStyle">
+        <img src={Logo} alt="bike" width="90%" height="90%" />
+        <h3>Razor Bike Service</h3>
+      </Paper>
       <Paper elevation={20} className="paperStyle">
         <Grid align="center">
           <Avatar style={{ color: "green" }}></Avatar>

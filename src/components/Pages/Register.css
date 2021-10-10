@@ -1,3 +1,15 @@
+.homeContainer {
+    display: flex;
+    justify-content: space-around;
+}
+
+@media screen and (max-width: 768px) {
+    .homeContainer {
+        display: flex;
+        flex-direction: column;
+    }
+    
+}
 .paperStyle1 {
     padding: 2rem 1rem;
     margin: 20px auto;   
