@@ -22,7 +22,7 @@ function ServiceDetails() {
           var dateB = new Date(b.serviceDate);
           return dateB - dateA;
         });
-        setServices(tempServices);
+        setServices([...tempServices]);
         if (response.data.message === "Authentication Failed!") {
           history.push({
             pathname: "/signin",

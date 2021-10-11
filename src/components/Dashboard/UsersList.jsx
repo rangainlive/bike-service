@@ -24,15 +24,14 @@ function UsersList() {
         const tempServices = response.data;
         setUser(tempServices);
         if (response.data.message === "Authentication Failed!") {
-          history.push({
-            pathname: "/signin",
-          });
         }
       })
       .catch((error) => {
         console.log(error);
       });
-  }, [history]);
+  });
+
+  
   return (
     <div className="userListContainer">
       <div>

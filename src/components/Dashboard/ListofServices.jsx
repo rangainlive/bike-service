@@ -21,15 +21,13 @@ function ListofServices() {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  });
 
   const addServiceHandler = () => {
     axios
       .post("http://localhost:5050/app/addservice", { serviceName: serviceN })
       .then((response) => {
-        history.push({
-          pathname: "/admin",
-        });
+        setServiceN("");
       })
       .catch((error) => {
         console.log(error);
@@ -47,7 +45,7 @@ function ListofServices() {
             className="form-control"
             value={serviceN}
             onChange={(event) => setServiceN(event.target.value)}
-            placeholder="serach"
+            placeholder="Enter and add services"
             aria-label="search"
             aria-describedby="button-addon2"
           />

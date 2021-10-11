@@ -158,7 +158,7 @@ router.get("/servicelist", authenticate, (req, res, next) => {
   // get user details from database
   serviceListSchema.find().then((service) => {
     if (service) {
-      res.status(200).send(service);
+      res.status(200).json(service);
     } else {
       res.status(404).send("Service details not found");
     }
@@ -256,7 +256,7 @@ router.post("/updateuser", async (req, res, next) => {
     gender: req.body.gender,
     plan: req.body.type,
   });
-  console.log(updatedUser);
+  // console.log(updatedUser);
   userScheme
     .updateOne({ email: req.body.email }, updatedUser)
     .then((user) => {
@@ -284,6 +284,7 @@ router.post("/updateservice", async (req, res, next) => {
       pass: process.env.PASSWORD,
     },
   });
+
   serviceSchema
     .updateOne({ _id: req.body._id }, updatedService)
     .then((user) => {

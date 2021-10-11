@@ -87,7 +87,7 @@ function NewBookings() {
         return (
           <div className="card text-center m-2" key={service._id}>
             <div className="card-header" id="cardHead">
-              <div>Service ID: {service._id}</div>
+              <div>Service ID: {service.email}</div>
               <div>
                 <button
                   className="btn btn-primary"
