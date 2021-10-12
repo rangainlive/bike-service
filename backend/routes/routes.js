@@ -167,6 +167,8 @@ router.get("/servicelist", authenticate, (req, res, next) => {
 
 // Post api call to fix and appointment for Bike Service
 router.post("/bookservice", async (req, res, next) => {
+  const sDate = req.body.serviceDate;
+  
   const bookedService = new serviceSchema({
     email: req.body.email,
     serviceType: req.body.serviceType,
