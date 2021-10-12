@@ -7,6 +7,9 @@ const serviceSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  modalName: {
+    type: String,
+  },
   serviceType: {
     type: String,
     required: true,

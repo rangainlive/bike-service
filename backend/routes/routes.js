@@ -1,6 +1,9 @@
 // Initialize the express.js
 const express = require("express");
 
+// Initialize express validator
+const  { body, validationResult } = require("express-validator");
+
 // Initialize the nodemailer
 const nodemailer = require("nodemailer");
 
@@ -166,11 +169,18 @@ router.get("/servicelist", authenticate, (req, res, next) => {
 });
 
 // Post api call to fix and appointment for Bike Service
-router.post("/bookservice", async (req, res, next) => {
-  const sDate = req.body.serviceDate;
-  
+router.post("/bookservice", body("serviceDate").isAfter(new Date().toDateString()), async (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({
+        success: false,
+        errors: errors.array()
+    });
+  }
+
   const bookedService = new serviceSchema({
     email: req.body.email,
+    modalName: req.body.modalName,
     serviceType: req.body.serviceType,
     serviceDate: req.body.serviceDate,
   });
