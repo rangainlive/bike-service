@@ -105,3 +105,10 @@ form {
     width: 100%;
     text-align: center;
 }
+
+.hideL {
+    display: none;
+}
+.showL {
+    display: block;
+}

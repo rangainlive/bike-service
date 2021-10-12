@@ -14,6 +14,11 @@ function BookService() {
     serviceType: "",
     serviceDate: "",
   });
+  const [valid, setValid] = useState({
+    isModal: null,
+    isType: null,
+    isDate: null,
+  });
   const [user, setUser] = useState([]);
   const [services, setServices] = useState([]);
   const list = ["General service check-up", "Oil change", "Water wash"];
@@ -79,6 +84,24 @@ function BookService() {
 
   const filedHandler = (event) => {
     const { name, value } = event.target;
+    if (name === "serviceDate") {
+      setValid({
+        ...valid,
+        isDate: Yup.date().min(new Date()).isValidSync(value),
+      });
+    }
+    if (name === "modalName") {
+      setValid({
+        ...valid,
+        isModal: Yup.string().required().isValidSync(value),
+      });
+    }
+    if (name === "serviceType") {
+      setValid({
+        ...valid,
+        isType: Yup.string().required().isValidSync(value),
+      });
+    }
     setInitialValues({
       ...initialValues,
       [name]: value,
@@ -122,6 +145,14 @@ function BookService() {
                 id="modalName"
               />
             </div>
+            <div>
+              <label className={valid.isModal === null ? "hideL" : "showL"}>
+                {" "}
+                {valid.isModal ? null : (
+                  <span className="demoError">Enter the name</span>
+                )}
+              </label>
+            </div>
           </div>
           <div className="formField">
             <div className="form-group">
@@ -154,6 +185,14 @@ function BookService() {
                   );
                 })}
               </select>
+              <div>
+                <label className={valid.isType === null ? "hideL" : "showL"}>
+                  {" "}
+                  {valid.isType ? null : (
+                    <span className="demoError">Select the sevice type</span>
+                  )}
+                </label>
+              </div>
             </div>
           </div>
 
@@ -182,11 +221,32 @@ function BookService() {
                   className="form-control"
                 />
               </div>
+              <div>
+                <label className={valid.isDate === null ? "hideL" : "showL"}>
+                  {" "}
+                  {valid.isDate ? null : (
+                    <span className="demoError">Enter the valid Date</span>
+                  )}
+                </label>
+              </div>
             </div>
           </div>
         </form>
         <div className="formBtn">
-          <button className="btn btn-primary" type="submit" onClick={onSubmit}>
+          <button
+            className="btn btn-primary"
+            type="button"
+            disabled={
+              valid.isDate
+                ? valid.isModal
+                  ? valid.isType
+                    ? false
+                    : true
+                  : true
+                : true
+            }
+            onClick={onSubmit}
+          >
             Book Service
           </button>
         </div>
